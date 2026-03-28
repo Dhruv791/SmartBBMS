@@ -10,6 +10,9 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import Signup from './pages/Signup'; 
+import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
+
 
 const DashboardLayout = () => {
     return (
@@ -33,29 +36,34 @@ const DashboardLayout = () => {
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                {/* Public Routes */}
-                <Route path="/login" element={<Login />} />
-                 <Route path="/signup" element={<Signup />} />
-                <Route path="/" element={<Navigate to="/login" replace />} />
+    <Routes>
 
-                {/* Protected Routes Wrapper */}
-                <Route 
-                    path="/" 
-                    element={
-                        <ProtectedRoute>
-                            <DashboardLayout />
-                        </ProtectedRoute>
-                    }
-                >
-                    <Route path="dashboard" element={<DashboardHome />} />
-                    <Route path="donor" element={<Donor />} />
-                    <Route path="inventory" element={<Inventory />} />
-                    <Route path="requests" element={<Requests />} />
-                    {/* Additional routes referenced in your components */}
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        {/* Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* Protected Routes */}
+        <Route 
+            path="/" 
+            element={
+                <ProtectedRoute>
+                    <DashboardLayout />
+                </ProtectedRoute>
+            }
+        >
+            <Route path="dashboard" element={<DashboardHome />} />
+            <Route path="donor" element={<Donor />} />
+            <Route path="inventory" element={<Inventory />} />
+            <Route path="requests" element={<Requests />} />
+            <Route path="settings" element={<Settings />} />
+        </Route>
+
+        {/* ✅ Catch-all route (ALWAYS LAST) */}
+        <Route path="*" element={<NotFound />} />
+
+    </Routes>
+</BrowserRouter>
     );
 }
 
