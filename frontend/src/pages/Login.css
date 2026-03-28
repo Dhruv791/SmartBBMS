@@ -1,0 +1,246 @@
+/* Using Inter or system font for premium look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc; /* premium slate background */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 2rem;
+}
+
+.login-card {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    height: 650px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* soft deep shadow */
+    overflow: hidden;
+}
+
+/* LEFT SIDEBAR: Branding */
+.login-sidebar {
+    flex: 1;
+    position: relative;
+    /* Soft medical red gradient */
+    background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+    color: white;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Optional overlay pattern for texture */
+.sidebar-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sidebar-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-emoji {
+    font-size: 2rem;
+}
+
+.brand-logo h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.025em;
+}
+
+.hero-text p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 90%;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* RIGHT SIDE: Login Form */
+.login-form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: #ffffff;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 380px; /* limits form stretch */
+}
+
+.form-header {
+    margin-bottom: 2rem;
+}
+
+.form-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+}
+
+.form-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.error-alert {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-password {
+    font-size: 0.875rem;
+    color: #ef4444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.forgot-password:hover {
+    color: #b91c1c;
+    text-decoration: underline;
+}
+
+.modern-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #0f172a;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: #f8fafc;
+}
+
+.modern-input:focus {
+    outline: none;
+    border-color: #ef4444;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+.modern-input::placeholder {
+    color: #cbd5e1;
+}
+
+.submit-btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.submit-btn:disabled {
+    background-color: #fda4af;
+    cursor: not-allowed;
+}
+
+.btn-loading {
+    opacity: 0.8;
+}
+
+/* Responsive adjustment for Mobile & small screens */
+@media (max-width: 768px) {
+    .login-card {
+        flex-direction: column;
+        height: auto;
+    }
+    .login-sidebar {
+        padding: 2rem;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    .login-form-section {
+        padding: 2rem;
+    }
+}

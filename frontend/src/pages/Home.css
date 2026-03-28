@@ -1,0 +1,219 @@
+/* Home.css */
+.dashboard-container {
+    padding: 2rem;
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.dashboard-header {
+    margin-bottom: 2.5rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.03em;
+}
+
+.dashboard-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Stats Grid Layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border-color: rgba(226, 232, 240, 0.9);
+}
+
+.stat-card:hover::after {
+    opacity: 1;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.blood-units .stat-icon {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    color: white;
+}
+
+.donors .stat-icon {
+    background: linear-gradient(135deg, #4776e6 0%, #8e54e9 100%);
+    color: white;
+}
+
+.requests .stat-icon {
+    background: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%);
+    color: white;
+}
+
+.stat-details h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.stat-trend {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-trend.positive {
+    background: rgba(34, 197, 94, 0.1);
+    color: #15803d;
+}
+
+.stat-trend.negative {
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+}
+
+/* Recent Activity Section */
+.recent-activity {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.recent-activity h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: transform 0.2s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+}
+
+.activity-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Line connector between dots */
+.activity-item:not(:last-child) .activity-dot::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 6px;
+    width: 2px;
+    height: 38px;
+    background: #e2e8f0;
+    z-index: 0;
+}
+
+.activity-dot.bg-red { background: #ef4444; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2); }
+.activity-dot.bg-green { background: #10b981; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2); }
+.activity-dot.bg-blue { background: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); }
+
+.activity-content p {
+    color: #334155;
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+    font-weight: 500;
+}
+
+.activity-content p strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.activity-content span {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
