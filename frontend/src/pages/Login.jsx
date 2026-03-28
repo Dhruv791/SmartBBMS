@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Importing premium styles
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });

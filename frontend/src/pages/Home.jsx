@@ -1,6 +1,4 @@
 import React from 'react';
-import './Home.css';
-
 const DashboardHome = () => {
     return (
         <div className="dashboard-container">
