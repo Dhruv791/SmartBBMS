@@ -53,8 +53,6 @@ function App() {
                     <Route path="inventory" element={<Inventory />} />
                     <Route path="requests" element={<Requests />} />
                     {/* Additional routes referenced in your components */}
-                    <Route path="predict" element={<DashboardHome />} />
-                    <Route path="fertilizer" element={<DashboardHome />} />
                 </Route>
             </Routes>
         </BrowserRouter>
