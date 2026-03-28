@@ -3,24 +3,32 @@ import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom
 import Login from './pages/Login';
 import DashboardHome from './pages/Home';
 import Donor from './pages/Donor';
+import Inventory from './pages/Inventory';
+import Requests from './pages/Requests';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 
 const DashboardLayout = () => {
     return (
-        <div className="app-layout flex flex-col min-h-screen">
+        <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar />
-            <div className="app-body flex flex-1 overflow-hidden">
+            <div className="app-body" style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
                 <Sidebar />
-                <main className="main-content flex-1 overflow-y-auto">
-                    <Outlet />
-                </main>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+                    
+                    {/* Main Content Space */}
+                    <main className="main-content" style={{ flex: 1, paddingBottom: '24px' }}>
+                        <Outlet />
+                    </main>
+                    {/* Footer Placed Below Content */}
+                    <Footer />
+                </div>
             </div>
         </div>
     );
 };
-
 function App() {
     return (
         <BrowserRouter>
@@ -40,6 +48,8 @@ function App() {
                 >
                     <Route path="dashboard" element={<DashboardHome />} />
                     <Route path="donor" element={<Donor />} />
+                    <Route path="inventory" element={<Inventory />} />
+                    <Route path="requests" element={<Requests />} />
                     {/* Additional routes referenced in your components */}
                     <Route path="predict" element={<DashboardHome />} />
                     <Route path="fertilizer" element={<DashboardHome />} />
