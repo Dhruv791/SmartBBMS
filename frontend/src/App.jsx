@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import Signup from './pages/Signup'; 
 
 const DashboardLayout = () => {
     return (
@@ -35,6 +36,7 @@ function App() {
             <Routes>
                 {/* Public Routes */}
                 <Route path="/login" element={<Login />} />
+                 <Route path="/signup" element={<Signup />} />
                 <Route path="/" element={<Navigate to="/login" replace />} />
 
                 {/* Protected Routes Wrapper */}

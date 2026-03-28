@@ -1,8 +1,9 @@
+// src/pages/Signup.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const [credentials, setCredentials] = useState({ email: '', password: '' });
+const Signup = () => {
+    const [credentials, setCredentials] = useState({ name: '', email: '', password: '', confirmPassword: '' });
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -11,27 +12,34 @@ const Login = () => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     };
 
-    const handleLogin = async (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
 
-        // Simulate an API validation call for the Smart Blood Bank
+        // Basic validation
+        if (credentials.password !== credentials.confirmPassword) {
+            setError('Passwords do not match.');
+            setIsLoading(false);
+            return;
+        }
+
+        // Simulate an API registration call
         setTimeout(() => {
-            if (credentials.email && credentials.password) {
-                localStorage.setItem('token', 'simulated-jwt-token');
-                navigate('/dashboard');
+            if (credentials.name && credentials.email && credentials.password) {
+                // Redirecting back to Login upon successful registration
+                navigate('/login');
             } else {
-                setError('Please provide valid access credentials.');
+                setError('Please fill in all required fields.');
                 setIsLoading(false);
             }
-        }, 1200); // 1.2 second loading state simulation
+        }, 1200); 
     };
 
     return (
         <div className="login-container">
             <div className="login-card">
-                {/* Left Side: Dynamic Branding Image / Info */}
+                {/* Left Side: Branding Image / Info */}
                 <div className="login-sidebar">
                     <div className="sidebar-overlay"></div>
                     <div className="sidebar-content">
@@ -40,11 +48,10 @@ const Login = () => {
                             <h2>Smart Blood Bank</h2>
                         </div>
                         <div className="hero-text">
-                            <h1>Every Drop<br />Counts.</h1>
+                            <h1>Join Our<br />Network.</h1>
                             <p>
-                                Access the centralized command center. Manage donor flow, 
-                                track blood inventory in real-time, and streamline emergency 
-                                dispatch operations.
+                                Create an account to access the centralized command center. 
+                                Manage donor flow, track inventory, and save lives.
                             </p>
                         </div>
                         <div className="footer-text">
@@ -53,12 +60,12 @@ const Login = () => {
                     </div>
                 </div>
 
-                {/* Right Side: Clean Login Form */}
+                {/* Right Side: Cleanup Signup Form */}
                 <div className="login-form-section">
                     <div className="form-wrapper">
                         <div className="form-header">
-                            <h3>Welcome Back</h3>
-                            <p>Enter your authorized credentials to sign in.</p>
+                            <h3>Create Account</h3>
+                            <p>Register as a new administrator or staff member.</p>
                         </div>
                         
                         {error && (
@@ -67,27 +74,37 @@ const Login = () => {
                             </div>
                         )}
 
-                        <form onSubmit={handleLogin} className="login-form">
+                        <form onSubmit={handleSignup} className="login-form">
+                            <div className="input-group">
+                                <label htmlFor="name">Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="name"
+                                    name="name" 
+                                    placeholder="e.g. John Doe" 
+                                    value={credentials.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="modern-input"
+                                />
+                            </div>
+
                             <div className="input-group">
                                 <label htmlFor="email">Email Address</label>
                                 <input 
                                     type="email" 
                                     id="email"
                                     name="email" 
-                                    placeholder="e.g. admin@bloodbank.org" 
+                                    placeholder="e.g. staff@bloodbank.org" 
                                     value={credentials.email}
                                     onChange={handleChange}
                                     required
-                                    autoComplete="email"
                                     className="modern-input"
                                 />
                             </div>
 
                             <div className="input-group">
-                                <div className="label-row">
-                                    <label htmlFor="password">Password</label>
-                                    <a href="#" className="forgot-password">Forgot password?</a>
-                                </div>
+                                <label htmlFor="password">Password</label>
                                 <input 
                                     type="password" 
                                     id="password"
@@ -96,7 +113,20 @@ const Login = () => {
                                     value={credentials.password}
                                     onChange={handleChange}
                                     required
-                                    autoComplete="current-password"
+                                    className="modern-input"
+                                />
+                            </div>
+
+                            <div className="input-group">
+                                <label htmlFor="confirmPassword">Confirm Password</label>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword"
+                                    name="confirmPassword" 
+                                    placeholder="••••••••" 
+                                    value={credentials.confirmPassword}
+                                    onChange={handleChange}
+                                    required
                                     className="modern-input"
                                 />
                             </div>
@@ -105,16 +135,19 @@ const Login = () => {
                                 type="submit" 
                                 className={`submit-btn ${isLoading ? 'btn-loading' : ''}`}
                                 disabled={isLoading}
+                                style={{ marginTop: '10px' }}
                             >
-                                {isLoading ? 'Authenticating...' : 'Sign In'}
+                                {isLoading ? 'Creating Account...' : 'Sign Up'}
                             </button>
+
+                            {/* Navigation back to login */}
                             <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '14px', color: '#64748b' }}>
-                                Don't have an account?{' '}
+                                Already have an account?{' '}
                                 <span 
-                                    onClick={() => navigate('/signup')} 
+                                    onClick={() => navigate('/login')} 
                                     style={{ color: '#ef4444', fontWeight: 'bold', cursor: 'pointer', transition: '0.2s' }}
                                 >
-                                    Register Here
+                                    Sign In
                                 </span>
                             </div>
                         </form>
@@ -125,4 +158,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
