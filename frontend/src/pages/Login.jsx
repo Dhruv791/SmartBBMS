@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../services/api';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -12,21 +13,27 @@ const Login = () => {
     };
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError('');
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
 
-        // Simulate an API validation call for the Smart Blood Bank
-        setTimeout(() => {
-            if (credentials.email && credentials.password) {
-                localStorage.setItem('token', 'simulated-jwt-token');
-                navigate('/dashboard');
-            } else {
-                setError('Please provide valid access credentials.');
-                setIsLoading(false);
-            }
-        }, 1200); // 1.2 second loading state simulation
-    };
+    try {
+        const res = await API.post('/auth/login', {
+            email: credentials.email,
+            password: credentials.password
+        });
+
+        // store real JWT token
+        localStorage.setItem('token', res.data.token);
+
+        navigate('/dashboard');
+
+    } catch (err) {
+        setError(err.response?.data?.message || 'Login failed');
+    } finally {
+        setIsLoading(false);
+    }
+};
 
     return (
         <div className="login-container">

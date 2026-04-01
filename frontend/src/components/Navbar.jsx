@@ -5,10 +5,17 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Remove authentication token
+        // remove token
         localStorage.removeItem('token');
-        // Redirect to login page
-        navigate('/login');
+
+        // optional: clear any extra data in future
+        localStorage.clear();
+
+        // redirect to login
+        navigate('/');
+
+        // force refresh (ensures protected route triggers)
+        window.location.reload();
     };
 
     return (
@@ -19,11 +26,13 @@ const Navbar = () => {
                     <h1>Smart Blood Bank</h1>
                 </Link>
             </div>
+
             <div className="navbar-menu">
                 <div className="user-profile">
                     <div className="avatar">A</div>
                     <span className="user-name">Admin</span>
                 </div>
+
                 <button onClick={handleLogout} className="logout-btn">
                     Logout
                 </button>
